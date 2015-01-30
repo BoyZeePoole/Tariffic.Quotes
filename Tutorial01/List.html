@@ -1,0 +1,23 @@
+﻿<form class="form-search">
+    <div class="input-append">
+        <input type="text" ng-model="query" class="input-medium search-query" placeholder="Search">
+        <button ng-click="reset()" type="submit" class="btn"><i class="icon-search"></i></button>
+    </div>
+    <button ng-click="query=''; reset()" ng-disabled="!query" type="submit" class="btn">Reset</button>
+    <hr />
+</form>
+<table class="table table-striped table-condensed table-hover">
+    <thead>
+        <th sorted="Name">Author</th>
+        <th sorted="Surname">Quote</th>
+        <th><a href="#/new"><i class="icon-plus-sign"></i></a></th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="quote in Quotes" id="contact_{{quote.Id}}">
+            <td>{{quote.Author}}</td>
+            <td>{{quote.Quote1}}</td>
+            <td><a ng-click="delete()"><i class="icon-remove"></i></a></td>
+            <td><a href="#/edit/{{quote.Id}}"><i class="icon-edit"></i></a></td>
+        </tr>
+    </tbody>
+</table>
