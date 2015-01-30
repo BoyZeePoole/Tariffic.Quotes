@@ -131,23 +131,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="BootstrapSupport\ControlGroupExtensions.cs" />
-    <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
     <Compile Include="Code\General.cs" />
-    <Compile Include="Controllers\BootstrapBaseController.cs" />
     <Compile Include="Controllers\QuotesController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\QuotesContext.cs" />
     <Compile Include="Models\Quote.cs" />
-    <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
-    <Compile Include="NavigationRoutes\NamedRoute.cs" />
-    <Compile Include="NavigationRoutes\NavigationExtensions.cs" />
-    <Compile Include="NavigationRoutes\NavigationRouteConfigurationExtensions.cs" />
-    <Compile Include="NavigationRoutes\NavigationRouteFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -539,20 +529,6 @@
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\_html5shiv.cshtml" />
-    <Content Include="Views\Shared\Index.cshtml" />
-    <Content Include="Views\Shared\Details.cshtml" />
-    <Content Include="Views\Shared\Create.cshtml" />
-    <Content Include="Views\Shared\_validationSummary.cshtml" />
-    <Content Include="Views\Shared\_BootstrapLayout.narrow.cshtml" />
-    <Content Include="Views\Shared\_BootstrapLayout.empty.cshtml" />
-    <Content Include="Views\Shared\_BootstrapLayout.basic.cshtml" />
-    <Content Include="Views\Shared\_alerts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
