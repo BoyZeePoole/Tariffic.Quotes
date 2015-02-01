@@ -10,12 +10,25 @@
 
 
 QuotesApp.factory('Quotes', function ($resource) {
-    return $resource('/api/quotes/:id', { id: '@id' }, { update: { method: 'PUT' } });
+    return $resource('/api/quotes/GetQuotes/:id', { id: '@id' }, { update: { method: 'PUT' } });
 });
 
-var CreateCtrl = function ($scope, $location, Quotes) {
+QuotesApp.factory('QuotesPost', function ($resource) {
+    return $resource('/api/quotes/PostQuotes', { id: '@id' }, { update: { method: 'PUT' } });
+});
+
+QuotesApp.factory('QuotesPut', function ($resource) {
+    return $resource('/api/quotes/PutQuotes/:id', { id: '@id' }, { update: { method: 'PUT' } });
+});
+
+QuotesApp.factory('QuotesAgg', function ($resource) {
+    //return $resource('/api/QuoteCount', { id: '@id' }, { update: { method: 'PUT' } });
+    return $resource('/api/quotes/QuotesCount');
+});
+
+var CreateCtrl = function ($scope, $location, QuotesPost) {
     $scope.save = function () {
-        Quotes.save($scope.item, function () {
+        QuotesPost.save($scope.item, function () {
             $location.path('/');
         });
     }
@@ -23,11 +36,11 @@ var CreateCtrl = function ($scope, $location, Quotes) {
 };
 
 
-var EditCtrl = function ($scope, $routeParams, $location, Quotes) {
+var EditCtrl = function ($scope, $routeParams, $location, Quotes, QuotesPut) {
     $scope.item = Quotes.get({ id: $routeParams.itemId });
 
     $scope.save = function () {
-        Quotes.update({ id: $scope.item.Id }, $scope.item, function () {
+        QuotesPut.update({ id: $scope.item.Id }, $scope.item, function () {
             $location.path('/');
         });
     };
@@ -35,7 +48,7 @@ var EditCtrl = function ($scope, $routeParams, $location, Quotes) {
 };
 
 
-var ListCtrl = function ($scope, $location, Quotes) {
+var ListCtrl = function ($scope, $location, Quotes, QuotesAgg) {
     $scope.search = function () {
         Quotes.query({
             q: $scope.query,
@@ -44,7 +57,11 @@ var ListCtrl = function ($scope, $location, Quotes) {
         }, function (data) {
             $scope.Quotes = data;
         });
-        
+
+
+        QuotesAgg.query(function (data) {
+            $scope.QuotesAgg = data;
+        });        
     };
 
     $scope.sort_by = function (col) {

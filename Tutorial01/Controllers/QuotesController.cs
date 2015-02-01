@@ -31,6 +31,16 @@ namespace Tariffic.Quotes
             if (limit.HasValue) items = items.Take(limit.Value);
             return items;
         }
+        [HttpGet]
+        public IEnumerable<QuoteAggregate> QuotesCount()
+        {
+            var qts = from q in db.Quotes
+                      group q by q.Mood into iMoodes
+                      orderby iMoodes.Key
+                      //select new IQueryable<QuoteAggregate>() { MoodDesc = iMoodes.Key, iMoodes};
+                      select new QuoteAggregate() { Emotion = iMoodes.Key, Qty = iMoodes.Count() };
+            return qts;
+        }
 
         // GET api/Quotes/5
         public Quote GetQuotes(int id)
@@ -42,7 +52,7 @@ namespace Tariffic.Quotes
             }
 
             return Quotes;
-        }
+        }        
 
         // PUT api/Quotes/5
         public HttpResponseMessage PutQuotes(int id, Quote quotes)
