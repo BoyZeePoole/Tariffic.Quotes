@@ -81,6 +81,7 @@ namespace Tariffic.Quotes
         // POST api/Quotes
         public HttpResponseMessage PostQuotes(Quote quotes)
         {
+            string mediaMessage = quotes.Quote1.TarifficCase();
             if (ModelState.IsValid)
             {
                 quotes.Quote1 = quotes.Quote1.TarifficCase();
@@ -89,6 +90,10 @@ namespace Tariffic.Quotes
 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, quotes);
                 response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = quotes.Id }));
+                
+                MediaMessage mediaMessanger = new MediaMessage(new Twitter());
+                mediaMessanger.PostMessage(mediaMessage);
+
                 return response;
             }
             else

@@ -148,7 +148,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\General.cs" />
+    <Compile Include="Code\IMediaMessage.cs" />
     <Compile Include="Code\QuoteAggregate.cs" />
+    <Compile Include="Code\Twitter.cs" />
     <Compile Include="Controllers\QuoteCountController.cs" />
     <Compile Include="Controllers\QuotesController.cs" />
     <Compile Include="Global.asax.cs">

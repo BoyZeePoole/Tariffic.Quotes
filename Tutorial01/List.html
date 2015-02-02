@@ -4,7 +4,7 @@
         <button ng-click="reset()" type="submit" class="btn"><i class="icon-search"></i></button>
     </div>
     <button style="float:left"  ng-click="query=''; reset()" ng-disabled="!query" type="submit" class="btn">Reset</button>
-    <div style="margin-left:400px;">
+    <div style="margin-left:400px;float:right">
         <div style="width:50px;height:50px;float:left;margin-left:20px; background: #dddddd;border-radius:50%;" ng-repeat="quotesAgg in QuotesAgg">
             <div style="padding-top:8px; float:left"><img style="width:35px" src="Content/images/{{quotesAgg.Emotion}}.png" /></div>
             <div style="padding-top:14px;font-size:20px">{{quotesAgg.Qty}}</div>
