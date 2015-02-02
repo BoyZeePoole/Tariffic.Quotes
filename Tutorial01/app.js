@@ -21,6 +21,11 @@ QuotesApp.factory('QuotesPut', function ($resource) {
     return $resource('/api/quotes/PutQuotes/:id', { id: '@id' }, { update: { method: 'PUT' } });
 });
 
+QuotesApp.factory('QuotesDel', function ($resource) {
+    return $resource('/api/quotes/DeleteQuotes/:id', { id: '@id' }, { update: { method: 'PUT' } });
+});
+
+
 QuotesApp.factory('QuotesAgg', function ($resource) {
     //return $resource('/api/QuoteCount', { id: '@id' }, { update: { method: 'PUT' } });
     return $resource('/api/quotes/QuotesCount');
@@ -48,7 +53,7 @@ var EditCtrl = function ($scope, $routeParams, $location, Quotes, QuotesPut) {
 };
 
 
-var ListCtrl = function ($scope, $location, Quotes, QuotesAgg) {
+var ListCtrl = function ($scope, $location, Quotes, QuotesAgg, QuotesDel) {
     $scope.search = function () {
         Quotes.query({
             q: $scope.query,
@@ -78,9 +83,14 @@ var ListCtrl = function ($scope, $location, Quotes, QuotesAgg) {
     }
 
     $scope.delete = function () {
-        var id = this.contact.Id;
-        Quotes.delete({ id: id }, function () {
-            $('#contact_'+id).fadeOut();
+        var id = this.quote.Id;
+        QuotesDel.delete({ id: id }, function () {
+            $('#quote_' + id).fadeOut();
+
+            QuotesAgg.query(function (data) {
+                $scope.QuotesAgg = data;
+            });
+
         });
     }    
     $scope.sort_order = "Author";
