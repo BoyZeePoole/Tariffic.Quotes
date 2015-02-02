@@ -79,7 +79,14 @@ var ListCtrl = function ($scope, $location, Quotes, QuotesAgg, QuotesDel) {
         $scope.reset();
     }
     $scope.reset = function () {
+        $scope.emoticon = '';
         $scope.search();
+    }
+
+    $scope.filterIcon = function (icon) {
+        var icon = this.quotesAgg.Emotion;
+        $scope.emoticon = icon;
+        $scope.query = " ";
     }
 
     $scope.delete = function () {

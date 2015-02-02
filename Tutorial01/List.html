@@ -6,7 +6,7 @@
     <button style="float:left"  ng-click="query=''; reset()" ng-disabled="!query" type="submit" class="btn">Reset</button>
     <div style="margin-left:400px;float:right">
         <div style="width:50px;height:50px;float:left;margin-left:20px; background: #dddddd;border-radius:50%;" ng-repeat="quotesAgg in QuotesAgg">
-            <div style="padding-top:8px; float:left"><img style="width:35px" src="Content/images/{{quotesAgg.Emotion}}.png" /></div>
+            <div style="padding-top:8px; float:left"><img ng-click="filterIcon()" style="width:35px" src="Content/images/{{quotesAgg.Emotion}}.png" /></div>
             <div style="padding-top:14px;font-size:20px">{{quotesAgg.Qty}}</div>
         </div>
     </div><br /><br /><br />
@@ -20,9 +20,10 @@
         <th><a href="#/new"><i class="icon-plus-sign"></i></a></th>
     </thead>
     <tbody>
-        <tr ng-repeat="quote in Quotes" id="quote_{{quote.Id}}">
+        <tr ng-repeat="quote in Quotes | filter:{Mood: emoticon}" id="quote_{{quote.Id}}">
             <td>{{quote.Author}}</td>
             <td>{{quote.Quote1}}</td>
+            <td style="display:none">{{quote.Mood}}</td>
             <td><img style="width:35px" src="Content/images/{{quote.Mood}}.png" /> </td>
             <td><a ng-click="delete()"><i class="icon-remove"></i></a></td>
             <td><a href="#/edit/{{quote.Id}}"><i class="icon-edit"></i></a></td>
